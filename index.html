@@ -573,7 +573,7 @@ footer a:hover{color:var(--cyan)}
     var html="";
     order.forEach(function(id){
       var r=byId[id];if(!r)return;
-      var chg=(r.changePct==null)?0:(r.changePct*100);
+      var chg=(r.changePct==null)?0:r.changePct; // backend already returns percent
       var cls=chg>=0?"up":"down";
       var sign=chg>=0?"+":"";
       html+='<span><span class="tk-sym">'+r.display+'</span> <span class="tk-price">'+fmt(r.price)+'</span> <span class="tk-chg '+cls+'">'+sign+chg.toFixed(2)+'%</span></span>';
