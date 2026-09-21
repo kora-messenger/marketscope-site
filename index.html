@@ -69,6 +69,18 @@ h1 .grad{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-bac
 .hero-badges .b{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:600;color:var(--text-2);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 14px}
 .hero-badges .b svg{flex:none}
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.wins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.win-card{border:1px solid var(--border);border-radius:18px;padding:24px;background:#fff;display:flex;flex-direction:column;gap:14px}
+.win-head{display:flex;align-items:center;gap:12px}
+.win-av{flex:none;width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+.win-who{min-width:0}
+.win-name{font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win-meta{font-size:12px;color:var(--muted);font-weight:600}
+.win-quote{font-size:14.5px;color:var(--text-2);font-style:italic;flex:1}
+.win-tags{display:flex;gap:8px;flex-wrap:wrap}
+.win-chip{font-size:11px;font-weight:800;letter-spacing:.06em;padding:4px 10px;border-radius:999px}
+.win-chip.w{background:#ecfdf5;color:var(--green)}
+.win-chip.inst{background:var(--surface);color:var(--text-2)}
 .stat{border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;background:#fff}
 .stat .n{font-size:28px;font-weight:800;letter-spacing:-.02em}
 .stat .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:4px}
@@ -156,6 +168,7 @@ footer a:hover{color:var(--cyan)}
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:24px;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:12px}
 .disclaimer{font-size:12.5px;color:var(--muted);background:var(--surface);border-radius:12px;padding:16px 20px;margin-top:24px}
 @media(max-width:960px){
+  .wins-grid{grid-template-columns:1fr 1fr}
   .hero-grid,.split{grid-template-columns:1fr}
   .cards3,.tools,.steps{grid-template-columns:1fr 1fr}
   .pricing{grid-template-columns:1fr}
@@ -173,7 +186,7 @@ footer a:hover{color:var(--cyan)}
   .nav-panel .btn{display:flex;margin:16px 24px 20px;width:calc(100% - 48px)}
 }
 @media(max-width:640px){
-  .cards3,.tools,.steps{grid-template-columns:1fr}
+  .cards3,.tools,.steps,.wins-grid{grid-template-columns:1fr}
   .mini-stats{grid-template-columns:1fr}
   .stat-row{grid-template-columns:repeat(3,1fr);gap:10px}
   .stat{padding:14px 12px;border-radius:12px}
@@ -212,6 +225,7 @@ footer a:hover{color:var(--cyan)}
       <a href="#analyze">Analyze</a>
       <a href="#signals">Daily Signals</a>
       <a href="#community">Community</a>
+      <a href="#results">Results</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
     </div>
@@ -226,6 +240,7 @@ footer a:hover{color:var(--cyan)}
     <a href="#analyze">Analyze</a>
     <a href="#signals">Daily Signals</a>
     <a href="#community">Community</a>
+    <a href="#results">Results</a>
     <a href="#features">Features</a>
     <a href="#pricing">Pricing</a>
     <a href="#download" class="btn btn-dark">Get the app</a>
@@ -287,6 +302,17 @@ footer a:hover{color:var(--cyan)}
     </div>
   </div>
 </header>
+
+<section id="results" style="display:none">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-kicker">Featured results</div>
+      <h2>Real wins, straight from the room.</h2>
+      <p>Members share their closed signal trades — in their own words. Every entry below comes from a verified win posted inside the app.</p>
+    </div>
+    <div class="wins-grid" id="wins-grid"></div>
+  </div>
+</section>
 
 <section id="analyze" style="background:var(--surface)">
   <div class="container">
@@ -529,8 +555,9 @@ footer a:hover{color:var(--cyan)}
       <div>
         <h5>Company</h5>
         <ul>
-          <li><a href="https://kora-messenger.github.io/veltravia-site/">Veltravia Technologies</a></li>
-          <li><a href="mailto:support@marketscopeai.com">Support</a></li>
+          <li><a href="help.html">Help Center</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
           <li><a href="mailto:support@marketscopeai.com">Contact</a></li>
         </ul>
       </div>
@@ -565,6 +592,29 @@ footer a:hover{color:var(--cyan)}
     if(p>=100)return p.toLocaleString("en-US",{maximumFractionDigits:2});
     return p.toLocaleString("en-US",{maximumFractionDigits:4});
   }
+  // Featured results — real approved wins from the community (hidden if none)
+  fetch(API+"/api/community/wins/public").then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){
+    var wins=(d&&d.wins)||[];
+    var grid=document.getElementById("wins-grid");
+    if(!grid||!wins.length)return;
+    var esc=function(s){var d2=document.createElement("div");d2.textContent=s||"";return d2.innerHTML;};
+    var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    wins.slice(0,6).forEach(function(w){
+      var name=(w.authorName||"Trader").trim();
+      var initials=name.split(/\s+/).map(function(p){return p[0]||"";}).join("").slice(0,2).toUpperCase()||"T";
+      var dt=w.createdAt?new Date(w.createdAt):null;
+      var when=dt?(months[dt.getMonth()]+" "+dt.getFullYear()):"";
+      var inst=(w.instrument||"").toUpperCase();
+      var el=document.createElement("div");
+      el.className="win-card";
+      el.innerHTML='<div class="win-head"><div class="win-av">'+esc(initials)+'</div><div class="win-who"><div class="win-name">'+esc(name)+'</div><div class="win-meta">'+esc(when)+'</div></div></div>'
+        +'<p class="win-quote">&ldquo;'+esc(w.comment)+'&rdquo;</p>'
+        +'<div class="win-tags"><span class="win-chip w">WIN</span>'+(inst?'<span class="win-chip inst">'+esc(inst)+'</span>':'')+'</div>';
+      grid.appendChild(el);
+    });
+    document.getElementById("results").style.display="block";
+  }).catch(function(){/* no wins yet — section stays hidden */});
+
   // Ticker
   fetch(API+"/api/markets/watchlist").then(function(r){return r.json()}).then(function(d){
     if(!d||!d.rows||!d.rows.length)return;

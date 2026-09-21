@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help Center — MarketScope AI</title>
+<meta name="description" content="Get help with MarketScope AI: contact support and find answers about signals, analysis, subscriptions, ads and your account.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--surface:#f3f4f7;--ink:#0b0e14;--text-2:#4b5567;--muted:#8a93a6;--border:#e2e5ec;--cyan:#0891b2;--violet:#7c3aed;--green:#16a34a;--radius:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px}
+.brand img{width:32px;height:32px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:12px 24px;border-radius:12px;background:var(--ink);color:#fff;border:0;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(11,14,20,.25)}
+.hero{padding:64px 0 40px;max-width:720px}
+.hero h1{font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.02em}
+.hero p{font-size:17px;color:var(--text-2);margin-top:14px}
+.wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start;margin-bottom:96px}
+.card{border:1px solid var(--border);border-radius:20px;padding:32px;background:#fff}
+.card h2{font-size:20px;font-weight:800;margin-bottom:8px}
+.card .sub{font-size:14px;color:var(--muted);margin-bottom:22px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#fff;color:var(--ink);outline:none;transition:.2s}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(8,145,178,.1)}
+.faq{display:grid;gap:12px}
+.faq details{border:1px solid var(--border);border-radius:14px;background:#fff;overflow:hidden}
+.faq summary{padding:16px 20px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px}
+.faq summary::after{content:'+';font-size:20px;color:var(--muted);transition:.2s;flex:none}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .faq-body{padding:0 20px 18px;color:var(--text-2);font-size:14.5px}
+.faq .faq-body a{color:var(--cyan);font-weight:600}
+.sent{display:none;margin-top:16px;padding:14px 18px;border-radius:12px;background:#ecfdf5;border:1px solid #bbf7d0;color:#166534;font-size:14px;font-weight:600}
+footer{border-top:1px solid var(--border);padding:40px 0}
+.foot-nav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;color:var(--text-2);font-weight:500}
+.foot-nav a:hover{color:var(--ink)}
+.cr{font-size:13px;color:var(--muted);margin-top:18px}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}}
+@media(max-width:640px){.hero{padding:44px 0 28px}.card{padding:22px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="container nav-inner">
+  <a href="index.html" class="brand"><img src="assets/logo.png" alt="MarketScope AI"> MarketScope AI</a>
+  <a href="index.html#download" class="btn">Get the app</a>
+</div></nav>
+
+<header class="hero container">
+  <h1>Help Center</h1>
+  <p>Stuck on something? Most questions are answered below. If yours isn't, send it straight to our support inbox and we'll get back to you.</p>
+</header>
+
+<div class="container wrap">
+  <div class="card">
+    <h2>Contact us</h2>
+    <p class="sub">Tell us what's going on and your email app will open with everything pre-filled — just hit send.</p>
+    <form id="contact-form">
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" type="text" autocomplete="name" placeholder="e.g. Goodluck">
+      </div>
+      <div class="field">
+        <label for="f-email">Your email</label>
+        <input id="f-email" type="email" autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label for="f-topic">Topic</label>
+        <select id="f-topic">
+          <option>Account &amp; sign-in</option>
+          <option>AI chart analysis</option>
+          <option>Daily signals</option>
+          <option>Community</option>
+          <option>Subscription &amp; billing</option>
+          <option>Ads &amp; ad privacy</option>
+          <option>Bug report</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-msg">Message</label>
+        <textarea id="f-msg" placeholder="Describe the problem or question — the more detail, the faster we can help."></textarea>
+      </div>
+      <button class="btn" type="submit">Send message</button>
+      <div class="sent" id="sent">Your email app should have opened — just press send and we'll take it from there.</div>
+    </form>
+  </div>
+
+  <div>
+    <div class="faq">
+      <details>
+        <summary>What exactly is MarketScope AI?</summary>
+        <div class="faq-body">A trading companion for your phone. Upload a chart screenshot and the AI reads it into a structured trade plan, a mentor-curated desk publishes daily signals and manages them live until they close, and the community is where traders share wins and notes. Everything runs on real market data.</div>
+      </details>
+      <details>
+        <summary>Is any of this financial advice?</summary>
+        <div class="faq-body">No. Analyses and signals are AI-generated or opinion-based technical commentary, and trading always carries risk. Every decision you make is yours — see our <a href="terms.html">Terms of Service</a> for the full picture.</div>
+      </details>
+      <details>
+        <summary>How many free analyses do I get?</summary>
+        <div class="faq-body">Free accounts get a small daily allowance of AI chart analyses. New accounts also start with a free trial of all premium features. If you hit the daily limit on the free tier, you can optionally watch a short rewarded video to unlock one extra analysis for that day.</div>
+      </details>
+      <details>
+        <summary>Why do I see ads?</summary>
+        <div class="faq-body">Ads fund the free tier so it can stay free. They come from Google AdMob, only appear if you consent through Google's official consent form, and are never disguised as signals or community content. Premium subscribers never see ads at all.</div>
+      </details>
+      <details>
+        <summary>Can I turn off personalized ads?</summary>
+        <div class="faq-body">Yes. You can change or withdraw your ad-privacy choice at any time in the app under Settings → Ad privacy, or by resetting your device's advertising ID in Android settings. Declining personalization keeps ads on, but they stop using your advertising identifier. Details are in the <a href="privacy.html">Privacy Policy</a>.</div>
+      </details>
+      <details>
+        <summary>What do I get with Premium?</summary>
+        <div class="faq-body">Unrestricted AI analyses, the full signal experience, and a completely ad-free app. Premium renews monthly and you can cancel anytime — access simply continues until the end of the paid period.</div>
+      </details>
+      <details>
+        <summary>How do daily signals work?</summary>
+        <div class="faq-body">Each trading day the desk curates setups — with entry, stop, target and risk-reward levels — then manages the call live: updates, partials and the close, with push alerts as it moves. Closed signals show their outcome so you can follow the track record honestly.</div>
+      </details>
+      <details>
+        <summary>How do I delete my account and data?</summary>
+        <div class="faq-body">In the app: Settings → Delete my account. The request enters a 30-day grace period you can cancel from the app; after that, your account and associated data are permanently erased. You can also email <a href="mailto:support@marketscopeai.com">support@marketscopeai.com</a>.</div>
+      </details>
+      <details>
+        <summary>Which payments do you accept?</summary>
+        <div class="faq-body">Subscriptions are billed securely through Paystack and, where available, Google Play. We never see your full card details — only your name, email and subscription status.</div>
+      </details>
+      <details>
+        <summary>My question isn't here. Now what?</summary>
+        <div class="faq-body">Use the contact form on this page, or email <a href="mailto:support@marketscopeai.com">support@marketscopeai.com</a> directly — we respond within a reasonable time.</div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container">
+  <nav class="foot-nav">
+    <a href="index.html">Home</a>
+    <a href="help.html">Help Center</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </nav>
+  <p class="cr">© 2026 Veltravia Technologies · MarketScope AI</p>
+</div></footer>
+
+<script>
+(function(){
+  var form=document.getElementById('contact-form');
+  var sent=document.getElementById('sent');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('f-name').value.trim();
+    var email=document.getElementById('f-email').value.trim();
+    var topic=document.getElementById('f-topic').value;
+    var msg=document.getElementById('f-msg').value.trim();
+    var subject='[MarketScope AI] '+topic+(name?' — '+name:'');
+    var body=msg+(email?'\n\nReply to: '+email:'')+(name?'\nFrom: '+name:'');
+    window.location.href='mailto:support@marketscopeai.com'
+      +'?subject='+encodeURIComponent(subject)
+      +'&body='+encodeURIComponent(body);
+    sent.style.display='block';
+  });
+})();
+</script>
+</body>
+</html>
